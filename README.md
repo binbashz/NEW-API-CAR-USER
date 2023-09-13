@@ -1,0 +1,8 @@
+- src/
+  - controllers/
+    - usuarioController.js
+    - autoController.js
+  - routes/
+    - usuarioRoutes.js
+    - autoRoutes.js
+  - index.js
