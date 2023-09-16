@@ -6,9 +6,9 @@ const mysql = require('mysql2');
 // Configura la conexión a la base de datos MySQL (si aún no está configurada)
 const db = mysql.createConnection({
   host: 'localhost',
-  user: 'tu_usuario',
-  password: 'tu_contraseña',
-  database: 'rent_agile', // Nombre de tu base de datos
+      user: 'root',
+      database: 'rendatabase',
+      password: ''
 });
 
 // Función para registrar un nuevo auto

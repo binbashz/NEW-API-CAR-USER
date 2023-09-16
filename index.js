@@ -23,10 +23,10 @@ app.post('/registro', async (req, res) => {
   try {
     // Conectarse a la base de datos
     const connection = await mysql.createConnection({
-      host: 'tu_host',
-      user: 'tu_usuario',
-      password: 'tu_contraseña',
-      database: 'tu_base_de_datos'
+      host: 'localhost',
+      user: 'root',
+      database: 'rendatabase',
+      password: ''
     });
 
     // Verificar si el usuario ya existe en la base de datos

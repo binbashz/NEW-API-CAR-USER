@@ -8,9 +8,9 @@ const mysql = require('mysql2');
 // Configura la conexión a la base de datos MySQL
 const db = mysql.createConnection({
   host: 'localhost',
-  user: 'tu_usuario',
-  password: 'tu_contraseña',
-  database: 'rent_agile', // Nombre de la base de datos
+  user: 'root',
+  database: 'rendatabase',
+  password: ''
 });
 
 // Función para registrar un nuevo usuario
