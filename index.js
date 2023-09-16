@@ -10,6 +10,8 @@ const port = process.env.PORT || 3000;
 
 app.use(bodyParser.json());
 
+app.use(express.static(__dirname + '/public')); // para servir los archivos estáticos
+
 // Rutas inicio
 app.get('/', (req, res) => {
   res.sendFile(__dirname + '/public/html/index.html'); 
