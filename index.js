@@ -13,6 +13,17 @@ app.use(bodyParser.json());
 // Rutas inicio
 app.get('/', (req, res) => {
   res.sendFile(__dirname + '/public/html/index.html'); 
+
+});
+
+// Ruta registro
+app.get('/registro.html', (req, res) => {
+  res.sendFile(__dirname + '/public/html/registro.html');
+});
+
+// Ruta inicio de sesión
+app.get('/login.html', (req, res) => {
+  res.sendFile(__dirname + '/public/html/login.html');
 });
 
 // Rutas relacionadas con usuarios
@@ -62,6 +73,15 @@ app.post('/registro', async (req, res) => {
     return res.status(500).json({ mensaje: 'Error interno del servidor' });
   }
 });
+
+// Ruta para el estilo de pagina 
+
+app.use('/public/css', express.static(__dirname + '/public/css', { 
+  setHeaders: (res, path, stat) => {
+    res.set('Content-Type', 'text/css');
+  },
+}));
+
 
 app.listen(port, () => {
   console.log(`Servidor en funcionamiento en el puerto ${port}`);
