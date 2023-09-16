@@ -10,6 +10,11 @@ const port = process.env.PORT || 3000;
 
 app.use(bodyParser.json());
 
+// Rutas inicio
+app.get('/', (req, res) => {
+  res.sendFile(__dirname + '/public/html/index.html'); 
+});
+
 // Rutas relacionadas con usuarios
 app.use('/usuarios', usuarioRoutes);
 
