@@ -2,13 +2,14 @@
 
 - `node_modules`
 - `public`
-  - `css`
-    - `style.css`
+  `
+    
 - `html`
   - `index.html`
   - `login.html`
   - `perfil.html`
   - `registro.html`
+  - - `style.css`
 - `src`
   - `controllers`
     - `autoController.js`
