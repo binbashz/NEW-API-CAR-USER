@@ -1,10 +1,11 @@
 /* Estilos generales */
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'MuseoModerno', sans-serif;
     margin: 0;
     padding: 0;
     background-color: #f0f0f0;
 }
+
 
 .container {
     max-width: 1200px;
@@ -43,6 +44,11 @@ main {
 
 h1, h2, h3 {
     color: #333;
+}
+
+/* Cambiar tamaño del texto "Tu Auto, Tu Aventura" */
+h1.display-4 {
+    font-size: 2rem;
 }
 
 /* Estilos para los autos disponibles */
@@ -90,4 +96,14 @@ a {
 
 a:hover {
     color: #555;
+}
+
+/* Aplicar fuente personalizada de Google Fonts */
+h1.display-4 {
+    font-family: 'MuseoModerno', sans-serif;
+}
+
+/* Cambiar tamaño del texto "Rent Agile" */
+h1.navbar-brand {
+    font-size: 2rem;
 }

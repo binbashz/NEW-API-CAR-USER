@@ -3,33 +3,66 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Alquiler de Autos</title>
+    <title>Rent Agile - Tu Auto, Tu Aventura</title>
+    <!-- Enlaza a los archivos CSS de Bootstrap desde un CDN -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=MuseoModerno:wght@400;700&display=swap" rel="stylesheet">
+    <!-- Enlaza a tu archivo CSS personalizado -->
     <link rel="stylesheet" href="/public/css/style.css"> 
 </head>
 <body>
-    <header>
-        <h1>Bienvenido a nuestro servicio de alquiler de autos</h1>
-    </header>
-    <nav>
-        <ul>
-            <li><a href="registro.html">Registro</a></li>
-            <li><a href="login.html">Iniciar Sesión</a></li>
-        </ul>
-    </nav>
-    <main>
-        <h2>Nuestros Autos Disponibles</h2>
-        <!-- listar los autos disponibles -->
-        <div class="auto">
-            <img src="/public/img/auto.jpg" alt="Auto">
-            <h3>Toyota Camry</h3>
-            <p>Matrícula: ABC123</p>
-            <p>Precio por Día: $50</p>
-            <button>Alquilar</button>
+    <!-- Navbar de Bootstrap -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container">
+            <a class="navbar-brand" href="#">Rent Agile</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="registro.html">Registro</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="login.html">Iniciar Sesión</a>
+                    </li>
+                </ul>
+            </div>
         </div>
-        <!-- Repetir este bloque para cada auto disponible -->
+    </nav>
+
+    <header class="bg-primary text-white text-center py-5">
+        <h1 class="display-4">Tu Auto, Tu Aventura</h1>
+        <p class="lead">Descubre una nueva forma de viajar con Rent Agile</p>
+    </header>
+
+    <main class="container my-5">
+        <h2 class="text-center">Nuestros Autos Disponibles</h2>
+        <!-- Listar los autos disponibles con tarjetas de Bootstrap -->
+        <div class="row">
+            <div class="col-md-4">
+                <div class="card mb-4">
+                    <img src="/public/img/auto.jpg" class="card-img-top" alt="Auto">
+                    <div class="card-body">
+                        <h3 class="card-title">Toyota Camry</h3>
+                        <p class="card-text">Matrícula: ABC123</p>
+                        <p class="card-text">Precio por Día: $850</p>
+                        <button class="btn btn-primary">Alquilar</button>
+                    </div>
+                </div>
+            </div>
+            <!-- Repite esta tarjeta para cada auto disponible -->
+        </div>
     </main>
-    <footer>
-        <p>&copy; 2023 Alquiler de Autos</p>
+
+    <!-- Footer de Bootstrap -->
+    <footer class="bg-dark text-white text-center py-3">
+        <p>&copy; 2023 Rent Agile</p>
     </footer>
+
+    <!-- Enlaza a los archivos JavaScript de Bootstrap (requiere jQuery y Popper.js) -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.min.js"></script>
 </body>
 </html>
