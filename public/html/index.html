@@ -26,16 +26,58 @@
                     <li class="nav-item">
                         <a class="nav-link" href="login.html">Iniciar Sesión</a>
                     </li>
+                    <!-- Agrega un enlace que lleve a la sección de perfil -->
+                    <li class="nav-item">
+                        <a class="nav-link" href="perfil.html#perfil">Mi Perfil</a>
+                    </li>
                 </ul>
             </div>
         </div>
+    </nav>
+    
     </nav>
                  <!-- barra azul  -->
     <header class="header.bg-primary.text-white.text-center.py-5">
         <!-- Eslogan -->
         <p class="lead">Tu Auto, Tu Aventura</p>
     </header>
-        <!-- tarjetas con autos  -->
+    <br>
+    <!-- **************** seccion seleciona un auto -  (lupita) ********************** -->
+             <label for="auto">Busca tu auto:</label>
+             <select id="autoSelect" name="auto" required>
+               <option value="">🔍︎          </option>
+             </select> <!--  JavaScript para cargar las opciones busca tu auto  -->
+             <script>
+                 document.addEventListener('DOMContentLoaded', function () {
+                   const autoSelect = document.getElementById('autoSelect');
+               
+                   // Función para cargar la lista de automóviles desde el servidor 
+                   function cargarAutomoviles() {
+                     fetch('/autos/disponibles') // Reemplaza con la ruta correcta para obtener la lista de autos 
+                       .then((response) => response.json())
+                       .then((data) => {
+                         // Limpia las opciones existentes
+                         autoSelect.innerHTML = '<option value="">Selecciona un automóvil</option>';
+               
+                         // Agrega las opciones de automóvil desde los datos obtenidos
+                         data.forEach((auto) => {
+                           const option = document.createElement('option');
+                           option.value = auto.id; // Asigna un valor único para cada automóvil
+                           option.textContent = `${auto.marca} ${auto.modelo} - ${auto.matricula}`;
+                           autoSelect.appendChild(option);
+                         });
+                       })
+                       .catch((error) => {
+                         console.error('Error al cargar la lista de automóviles:', error);
+                       });
+                   }
+               
+                   // Llama a la función para cargar la lista de automóviles cuando la página se carga
+                   cargarAutomoviles();
+                 });
+               </script>
+               
+               <!-- tarjetas con autos  -->
     <section id="autos-disponibles" class="container my-5">
         <h2 class="text-center">Nuestros Autos Disponibles</h2>
         <div class="row">
@@ -75,6 +117,7 @@
             </div>
         </div>
     </section>
+
     <div class="text-center my-3">
         <div class="message-box">
             <p>Tu Aventura Comienza Aquí, <hr>Ya sea que estés planeando un emocionante viaje por carretera,
@@ -85,8 +128,7 @@
         </div>
     </div>
 
-    
-    <!-- Footer de Bootstrap -->
+        <!-- Footer de Bootstrap -->
     <footer class="bg-dark text-white text-center py-3">
         <p>&copy; 2023 Rent Agile</p>
     </footer>

@@ -117,3 +117,16 @@ button:hover {
     border-color: #000; /* Cambiar el color del borde a negro */
     color: #fff; /* Cambiar el color del texto a blanco */
 }
+
+
+/* Barra de pagina perfil  */
+
+/*  clase personalizada para la barra de navegación */
+.bg-red {
+    background-color: red; 
+}
+
+/* Asegura que este estilo sea más específico que el estilo original de Bootstrap */
+.navbar.bg-red {
+    background-color: red; 
+}
