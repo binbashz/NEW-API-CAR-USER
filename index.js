@@ -78,6 +78,11 @@ app.get('/login.html', (req, res) => {
   res.sendFile(__dirname + '/public/html/login.html');
 });
 
+// Ruta para acceder a el perfil de usuario
+app.get('/perfil.html', (req, res) => {
+  res.sendFile(__dirname + '/public/html/perfil.html');
+});
+
 // Ruta para procesar el inicio de sesión
 app.post('/inicio-sesion', async (req, res) => {
   const { email, contrasena } = req.body;
@@ -128,8 +133,6 @@ app.get('/cerrar-sesion', (req, res) => {
     res.redirect('/');
   });
 });
-
-
 
 
 // Ruta para el estilo de pagina 
