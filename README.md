@@ -73,7 +73,7 @@ Esta API proporciona funcionalidades para gestionar usuarios y autos en una base
 - Se utiliza Bootstrap para el diseño de las páginas HTML.
 - Se hace uso de las rutas de Express para manejar las solicitudes HTTP.
 
-Este es un resumen general de lo que hace la API. Si tienes preguntas específicas o necesitas más detalles sobre alguna parte en particular, no dudes en preguntar.
+
 
 
 
