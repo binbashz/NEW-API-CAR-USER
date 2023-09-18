@@ -121,13 +121,13 @@ h1.display-4 {
 
 /* Cambiar tamaño del texto "Tu Auto, Tu Aventura" */
 h1.display-4 {
-    font-size: 1.8rem; /* Cambia el tamaño de fuente según tus preferencias */
+    font-size: 1.8rem; /* Cambia el tamaño de fuente según preferencias */
 }
 
 
 /* estilo para las tarjetas */
 
-/* Agrega tu estilo personalizado para las tarjetas de productos */
+/* Agregar  estilo personalizado para las tarjetas de productos */
 .card {
     border: 1px solid #ccc;
     border-radius: 10px;
@@ -165,4 +165,14 @@ h1.display-4 {
     border-radius: 5px;
     max-width: 600px;
     margin: 0 auto;
+}
+/* Estilo para hacer la barra azul más angosta */ /* aun no toma los cambios wtf*/
+header.bg-primary.text-white.text-center.py-5 {
+    padding-top: 0.5rem; /* Reducir espacio superior */
+    padding-bottom: 0.5rem; /* Reducir espacio inferior */
+}
+
+/* Cambiar tamaño de fuente del eslogan */
+header.bg-primary.text-white.text-center.py-5 p.lead {
+    font-size: 1.5rem; 
 }
