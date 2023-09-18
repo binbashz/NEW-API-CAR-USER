@@ -12,7 +12,7 @@ const port = process.env.PORT || 3000;
 app.use(bodyParser.json());
 app.use('/usuarios', usuarioRoutes);
 app.use('/autos', autoRoutes);
-app.use(express.static(__dirname + '/public')); // para servir los archivos estáticos
+app.use(express.static(__dirname + '/public')); // para servir los archivos estáticos(como imagenes)
 
 // Configura la sesión de Express
 app.use(session({
