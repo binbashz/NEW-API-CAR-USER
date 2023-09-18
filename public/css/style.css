@@ -12,62 +12,53 @@ body {
     padding: 20px;
 }
 
+/* Estilos para la barra de navegación */
+#navbar {
+    background-color: #cf1909; /* Cambiar el color de fondo a rojo */
+    /* border-bottom: 3px solid #000;  Borde inferior de color negro */
+    border-radius: 0; /* Quitar las esquinas redondeadas */
+}
+
+.navbar-brand {
+    color: #fff; /* Cambiar el color del texto a blanco */
+    font-size: 33px; /* Rent Agile */
+}
+
+.nav-link {
+    color: #fff; /* Cambiar el color del texto a blanco */
+    font-size: 18px; /* Aumentar el tamaño del texto */
+}
+
+/* Estilos para el encabezado */
 header {
-    background-color: #333;
-    color: #fff;
+    background: linear-gradient(to right, #cf1909, #f54141); /* Degradado de colores */
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2); /* Sombra */
+    border-radius: 0; /* Quitar las esquinas redondeadas */
     text-align: center;
-    padding: 20px 0;
+    padding: 0.5rem 0;
 }
 
-nav ul {
-    list-style: none;
-    padding: 0;
+.lead {
+    font-size: 20px; /* Tu auto Tu aventura */
+    color: rgb(255, 255, 255);
+    text-shadow: 1px 1px 3px rgba(141, 4, 4, 0.8);
 }
 
-nav ul li {
-    display: inline;
-    margin-right: 20px;
-}
-
-nav ul li a {
-    text-decoration: none;
-    color: #333;
-    font-weight: bold;
-}
-
-main {
+/* Estilos para los autos disponibles */
+#autos-disponibles {
     background-color: #fff;
     padding: 20px;
     border-radius: 5px;
 }
 
- /*  estilo del nav */
-
- #navbar {
-    background-color: #333; /* Color de fondo normal del nav */
-    transition: background-color 0.3s; /* Transición suave para el cambio de color de fondo */
+h2 {
+    text-align: center;
 }
 
-#navbar:hover {
-    background-color: #555; /* Cambio de color de fondo al acercar el mouse */
+#autos-disponibles h2 {
+    font-size: 20px; 
 }
 
-
-h1, h2, h3 {
-    color: #333;
-}
-
-/*  texto "Rent Agile"  */
-h1.navbar-brand {
-    font-size: 3.7rem; 
-}
-
-/* texto "Tu Auto, Tu Aventura"  */   
-h1.display-4.my-custom-heading {
-    font-family: 'MuseoModerno', sans-serif;
-    font-size: 1.6rem;
-}
-/* Estilos para los autos disponibles */
 .auto {
     background-color: #fff;
     border: 1px solid #ccc;
@@ -82,6 +73,16 @@ h1.display-4.my-custom-heading {
     height: auto;
 }
 
+.card-title {
+    font-size: 1.25rem;
+    font-weight: bold;
+}
+
+.card-text {
+    color: #555;
+}
+
+/* Estilos para los botones */
 button {
     background-color: #333;
     color: #fff;
@@ -96,83 +97,23 @@ button:hover {
     background-color: #555;
 }
 
-/* Estilos para el footer */
-footer {
-    text-align: center;
-    background-color: #333;
-    color: #fff;
-    padding: 10px 0;
+.btn-primary {
+    background-color: #cf1909; /* Cambiar el color de fondo a rojo */
+    border-color: #661710; /* Cambiar el color del borde a rojo */
+    color: #fff; /* Cambiar el color del texto a blanco */
+    font-size: 18px; /* Aumentar el tamaño del texto */
 }
 
-/* Estilos para enlaces */
-a {
-    text-decoration: none;
-    color: #333;
+.btn-primary:hover {
+    background-color: #ff231c; /* Cambiar el color de fondo al pasar el mouse */
+    border-color: #f81e17; /* Cambiar el color del borde al pasar el mouse */
 }
 
-a:hover {
-    color: #555;
-}
-
-/* Aplicar fuente personalizada de Google Fonts */
-h1.display-4 {
-    font-family: 'MuseoModerno', sans-serif;
-}
-
-/* Cambiar tamaño del texto "Tu Auto, Tu Aventura" */
-h1.display-4 {
-    font-size: 1.8rem; /* Cambia el tamaño de fuente según preferencias */
-}
-
-
-/* estilo para las tarjetas */
-
-/* Agregar  estilo personalizado para las tarjetas de productos */
-.card {
-    border: 1px solid #ccc;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-}
-
-/*  cards of cars */
-.card-title {
-    font-size: 1.25rem;
-    font-weight: bold;
-}
-
-.card-text {
-    color: #555;
-}
-
-.card img {
-    max-width: 100%;
-    height: auto;
-}
-
-/* Estilos para el div centrado */
-.text-center.my-3 {
-    text-align: center;
-    font-size: 15px;
-    color: #333;
-    margin-top: 1rem;
-    margin-bottom: 1rem;
-}
-
-.message-box {
-    background-color: #f8f9fa;
-    padding: 9px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    max-width: 600px;
-    margin: 0 auto;
-}
-/* Estilo para hacer la barra azul más angosta */ /* aun no toma los cambios wtf*/
-header.bg-primary.text-white.text-center.py-5 {
-    padding-top: 0.5rem; /* Reducir espacio superior */
-    padding-bottom: 0.5rem; /* Reducir espacio inferior */
-}
-
-/* Cambiar tamaño de fuente del eslogan */
-header.bg-primary.text-white.text-center.py-5 p.lead {
-    font-size: 1.5rem; 
+/* Anular los estilos de Bootstrap para el botón después de hacer clic */
+.btn-primary:active,
+.btn-primary:hover,
+.btn-primary:focus {
+    background-color: #000; /* Cambiar el color de fondo a negro */
+    border-color: #000; /* Cambiar el color del borde a negro */
+    color: #fff; /* Cambiar el color del texto a blanco */
 }
