@@ -1,35 +1,8 @@
-
-
-- `node_modules`
-- `public`
-  `
-    
-- `html`
-  - `index.html`
-  - `login.html`
-  - `perfil.html`
-  - `registro.html`
-  - - `style.css`
-- `src`
-  - `controllers`
-    - `autoController.js`
-    - `usuarioController.js`
-- `routes`
-  - `autoRoutes.js`
-  - `usuarioRoutes.js`
-- `README.md`
-- `index.js`
-- `package-lock.json`
-- `package.json`
-- `.env` (si es necesario)
-  (and database)
-
-Funcionalidad básica para el registro y autenticación de usuarios, así como la gestión de autos disponibles para alquiler. 
+# API de Gestión de Usuarios y Autos
+####  Funcionalidad básica para el registro y autenticación de usuarios, así como la gestión de autos disponibles para alquiler. 
 Los usuarios pueden registrarse, iniciar sesión, ver autos disponibles y registrar nuevos autos en la base de datos.
 
-# API de Gestión de Usuarios y Autos
-
-Esta API proporciona funcionalidades para gestionar usuarios y autos en una base de datos MySQL. A continuación, se presenta un resumen de las características y endpoints disponibles:
+ A continuación, se presenta un resumen de las características y endpoints disponibles:
 
 ## Endpoints para Usuarios:
 
@@ -73,8 +46,33 @@ Esta API proporciona funcionalidades para gestionar usuarios y autos en una base
 - Se utiliza Bootstrap para el diseño de las páginas HTML.
 - Se hace uso de las rutas de Express para manejar las solicitudes HTTP.
 
+********************************************************************************************************************************
 
 
+
+- `node_modules`
+- `public`
+  `
+    
+- `html`
+  - `index.html`
+  - `login.html`
+  - `perfil.html`
+  - `registro.html`
+  - - `style.css`
+- `src`
+  - `controllers`
+    - `autoController.js`
+    - `usuarioController.js`
+- `routes`
+  - `autoRoutes.js`
+  - `usuarioRoutes.js`
+- `README.md`
+- `index.js`
+- `package-lock.json`
+- `package.json`
+- `.env` (si es necesario)
+  (and database)
 
 
  
