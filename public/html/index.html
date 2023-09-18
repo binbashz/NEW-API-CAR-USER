@@ -3,18 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rent Agile - Tu Auto, Tu Aventura</title>
+    <title>Rent Agile</title>
     <!-- Enlaza a los archivos CSS de Bootstrap desde un CDN -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css">
     <link href="https://fonts.googleapis.com/css2?family=MuseoModerno:wght@400;700&display=swap" rel="stylesheet">
     <!-- Enlaza a tu archivo CSS personalizado -->
-    <link rel="stylesheet" href="/public/css/style.css"> 
+    <link rel="stylesheet" href="/public/css/style.css">
 </head>
 <body>
     <!-- Navbar de Bootstrap -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light" id="navbar">
         <div class="container">
-            <a class="navbar-brand" href="#">Rent Agile</a>
+            <a class="navbar-brand" href="#"><strong>Rent Agile</strong></a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -32,29 +32,59 @@
     </nav>
 
     <header class="bg-primary text-white text-center py-5">
-        <h1 class="display-4">Tu Auto, Tu Aventura</h1>
-        <p class="lead">Descubre una nueva forma de viajar con Rent Agile</p>
+        <!-- Eslogan -->
+        <p class="lead">Tu Auto, Tu Aventura</p>
     </header>
 
-    <main class="container my-5">
+    <section id="autos-disponibles" class="container my-5">
         <h2 class="text-center">Nuestros Autos Disponibles</h2>
-        <!-- Listar los autos disponibles con tarjetas de Bootstrap -->
         <div class="row">
             <div class="col-md-4">
                 <div class="card mb-4">
-                    <img src="/public/img/auto.jpg" class="card-img-top" alt="Auto">
+                    <img src="imagen1.jpg" class="card-img-top" alt="Auto 1">
                     <div class="card-body">
-                        <h3 class="card-title">Toyota Camry</h3>
+                        <h5 class="card-title">Toyota Camry</h5>
                         <p class="card-text">Matrícula: ABC123</p>
                         <p class="card-text">Precio por Día: $850</p>
-                        <button class="btn btn-primary">Alquilar</button>
+                        <a href="#" class="btn btn-primary">Alquilar</a>
                     </div>
                 </div>
             </div>
-            <!-- Repite esta tarjeta para cada auto disponible -->
+            <div class="col-md-4">
+                <div class="card mb-4">
+                    <img src="imagen2.jpg" class="card-img-top" alt="Auto 2">
+                    <div class="card-body">
+                        <h5 class="card-title">Otro Auto</h5>
+                        <p class="card-text">Matrícula: XYZ456</p>
+                        <p class="card-text">Precio por Día: $750</p>
+                        <a href="#" class="btn btn-primary">Alquilar</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card mb-4">
+                    <img src="imagen3.jpg" class="card-img-top" alt="Auto 3">
+                    <div class="card-body">
+                        <h5 class="card-title">Auto Tres</h5>
+                        <p class="card-text">Matrícula: DEF789</p>
+                        <p class="card-text">Precio por Día: $900</p>
+                        <a href="#" class="btn btn-primary">Alquilar</a>
+                    </div>
+                </div>
+            </div>
         </div>
-    </main>
+    </section>
+    <div class="text-center my-3">
+        <div class="message-box">
+            <p>Tu Aventura Comienza Aquí, <hr>Ya sea que estés planeando un emocionante viaje por carretera,
+                 una escapada de fin de semana o simplemente necesites un auto confiable para el día a día,
+                  Rent Agile tiene la solución perfecta para ti. No dejes que las oportunidades de viajar y 
+                  explorar pasen de largo. ¡Reserva tu auto de alquiler hoy mismo y comienza tu próxima aventura 
+                  con Rent Agile!</p>
+        </div>
+    </div>
 
+    
     <!-- Footer de Bootstrap -->
     <footer class="bg-dark text-white text-center py-3">
         <p>&copy; 2023 Rent Agile</p>

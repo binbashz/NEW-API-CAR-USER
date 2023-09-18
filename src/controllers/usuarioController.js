@@ -1,9 +1,15 @@
-// implementar las funciones para registrar usuarios e iniciar sesión
-// asegúrarse de haber configurado previamente la base de datos y las tablas según los pasos anteriores
-// las funciones de controladores  para registrar usuario en la base de datos MySQL.
+/* Un controlador es una parte de una aplicación web que se encarga de manejar las solicitudes del cliente y
+ coordinar la lógica de la aplicación. 
+Manejar solicitudes HTTP: Los controladores reciben solicitudes HTTP, como solicitudes GET, POST, PUT o DELETE,
+ y determinan cómo debe responder la aplicación a esas solicitudes.
+Procesan los datos, interactúan con la base de datos, realizan cálculos y toman decisiones en función de la
+ solicitud del cliente.
 
+controladores relacionados en este archivo 
+controladores de registro y controlador  para iniciar sesión de un usuario */
 
 const mysql = require('mysql2');
+const bcrypt = require('bcrypt');
 
 // Configura la conexión a la base de datos MySQL
 const db = mysql.createConnection({
@@ -13,7 +19,7 @@ const db = mysql.createConnection({
   password: ''
 });
 
-// Función para registrar un nuevo usuario
+// Controlador para registrar un nuevo usuario
 exports.registrarUsuario = async (req, res) => {
   const { nombre, email, contrasena } = req.body;
 
@@ -43,7 +49,7 @@ exports.registrarUsuario = async (req, res) => {
   }
 };
 
-// Función para iniciar sesión de un usuario
+// Controlador para iniciar sesión de un usuario
 exports.iniciarSesion = async (req, res) => {
   const { email, contrasena } = req.body;
 
@@ -68,4 +74,14 @@ exports.iniciarSesion = async (req, res) => {
     console.error(error);
     res.status(500).json({ mensaje: 'Error interno del servidor' });
   }
+};
+
+// Controlador para cerrar sesión
+exports.cerrarSesion = (req, res) => {
+  req.session.destroy((err) => {
+    if (err) {
+      console.error('Error al cerrar la sesión:', err);
+    }
+    res.redirect('/');
+  });
 };

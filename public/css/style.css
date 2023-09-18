@@ -6,7 +6,6 @@ body {
     background-color: #f0f0f0;
 }
 
-
 .container {
     max-width: 1200px;
     margin: 0 auto;
@@ -42,15 +41,32 @@ main {
     border-radius: 5px;
 }
 
+ /*  estilo del nav */
+
+ #navbar {
+    background-color: #333; /* Color de fondo normal del nav */
+    transition: background-color 0.3s; /* Transición suave para el cambio de color de fondo */
+}
+
+#navbar:hover {
+    background-color: #555; /* Cambio de color de fondo al acercar el mouse */
+}
+
+
 h1, h2, h3 {
     color: #333;
 }
 
-/* Cambiar tamaño del texto "Tu Auto, Tu Aventura" */
-h1.display-4 {
-    font-size: 2rem;
+/*  texto "Rent Agile"  */
+h1.navbar-brand {
+    font-size: 3.7rem; 
 }
 
+/* texto "Tu Auto, Tu Aventura"  */   
+h1.display-4.my-custom-heading {
+    font-family: 'MuseoModerno', sans-serif;
+    font-size: 1.6rem;
+}
 /* Estilos para los autos disponibles */
 .auto {
     background-color: #fff;
@@ -103,7 +119,50 @@ h1.display-4 {
     font-family: 'MuseoModerno', sans-serif;
 }
 
-/* Cambiar tamaño del texto "Rent Agile" */
-h1.navbar-brand {
-    font-size: 2rem;
+/* Cambiar tamaño del texto "Tu Auto, Tu Aventura" */
+h1.display-4 {
+    font-size: 1.8rem; /* Cambia el tamaño de fuente según tus preferencias */
+}
+
+
+/* estilo para las tarjetas */
+
+/* Agrega tu estilo personalizado para las tarjetas de productos */
+.card {
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/*  cards of cars */
+.card-title {
+    font-size: 1.25rem;
+    font-weight: bold;
+}
+
+.card-text {
+    color: #555;
+}
+
+.card img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* Estilos para el div centrado */
+.text-center.my-3 {
+    text-align: center;
+    font-size: 15px;
+    color: #333;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+
+.message-box {
+    background-color: #f8f9fa;
+    padding: 9px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    max-width: 600px;
+    margin: 0 auto;
 }
