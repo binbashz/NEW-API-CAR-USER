@@ -63,8 +63,32 @@ Iniciar
 |   |   |-- Mostrar información del perfil del usuario
 |   |   |-- Cliente realiza acciones en el perfil (cambiar contraseña, etc.)
 
-Fin
 
+Registro de Usuarios:
+
+Los usuarios pueden registrarse proporcionando su nombre, dirección de correo electrónico y contraseña.
+La contraseña se almacena en la base de datos después de aplicarle un hash para mayor seguridad.
+La API verifica si el usuario ya existe antes de permitir el registro y muestra un mensaje de error si es necesario.
+Si el registro es exitoso, se almacenan los datos del usuario en la base de datos.
+Inicio de Sesión de Usuarios:
+
+Los usuarios registrados pueden iniciar sesión proporcionando su correo electrónico y contraseña.
+La API verifica si el correo electrónico y la contraseña coinciden con los registros en la base de datos.
+Se utiliza la función de hash para comparar la contraseña proporcionada con la almacenada en la base de datos.
+Si las credenciales son válidas, se inicia la sesión del usuario y se almacenan detalles de la sesión en cookies.
+Se muestra un mensaje de éxito o error según el resultado de la autenticación.
+Visualización de Autos Disponibles:
+
+Se proporciona una página web que muestra una lista de autos disponibles para alquiler.
+Cada auto tiene detalles como marca, modelo, matrícula y precio por día.
+Los usuarios pueden hacer clic en un botón "Alquilar" para solicitar la reserva del auto.
+Registro de Autos:
+
+Los usuarios pueden registrar nuevos autos a través de la API proporcionando detalles como marca, modelo, matrícula, precio por día y disponibilidad.
+Los datos del auto se almacenan en la base de datos para su posterior visualización en la lista de autos disponibles.
+Cierre de Sesión:
+
+Los usuarios pueden cerrar sesión en la aplicación, lo que eliminará sus datos de sesión almacenados.
 
 
  
