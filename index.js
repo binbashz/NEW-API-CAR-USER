@@ -2,8 +2,10 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const session = require('express-session');
 const usuarioRoutes = require('./src/routes/usuarioRoutes');
-const usuarioControllers = require('./usuarioControllers');
-const mysql = require('mysql2/promise');
+const usuarioControllers = require('./src/controllers/usuarioController');
+const autoRoutes = require('./src/routes/autoRoutes');
+
+const mysql = require('mysql2/promise');  // Asegúrate de tener instalada la dependencia mysql2
 const bcrypt = require('bcrypt');
 const path = require('path');
 const app = express();
@@ -17,9 +19,6 @@ const dbConfig = {
   password: ''
 };
 
-// Crear una conexión a la base de datos
-const connection = await mysql.createConnection(dbConfig);
-
 // Configura el motor de vistas EJS y la carpeta de vistas
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
@@ -30,7 +29,7 @@ app.use(bodyParser.json());
 
 app.use('/usuarios', usuarioRoutes);
 app.use('/autos', autoRoutes);
-app.use(express.static(__dirname + '/public'));
+app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(
   session({
@@ -40,14 +39,26 @@ app.use(
   })
 );
 
+// Función para crear una conexión a la base de datos
+async function createDBConnection() {
+  const connection = await mysql.createConnection(dbConfig);
+  return connection;
+}
+
 // Rutas
 app.post('/registro', usuarioControllers.registrarUsuario);
 app.post('/inicio-sesion', usuarioControllers.iniciarSesion);
 app.get('/cerrar-sesion', usuarioControllers.cerrarSesion);
 
+
 // Rutas inicio
 app.get('/', (req, res) => {
   res.sendFile(__dirname + '/public/html/index.html');
+});
+
+// Ruta para mostrar el formulario de inicio de sesión  // esta otra ruta 
+app.get('/login.html', (req, res) => {
+  res.sendFile(__dirname + '/public/html/login.html');
 });
 
 // Ruta registro
@@ -55,8 +66,21 @@ app.get('/registro.html', (req, res) => {
   res.sendFile(__dirname + '/public/html/registro.html');
 });
 
+/* Ruta para el perfil esta es la nueva en la cerpta view renderizada NUEVA RUTAAAAAAAAA RENDERIZADA
+app.get('/perfil', (req, res) => {
+  res.render('perfil'); // Renderiza el archivo perfil.ejs desde la carpeta 'views'
+}); */
+// Ruta para el perfil
+app.get('/perfil', (req, res) => {
+  // Asegúrate de tener la variable 'user' definida o reemplaza con tu lógica de autenticación
+  const user = req.user; // Esto es solo un ejemplo, debes usar tu propia lógica
+
+  // Renderizamos el archivo perfil.ejs desde la carpeta 'views' y pasamos la variable 'user'
+  res.render('perfil', { user });
+});
+
 // Ruta para mostrar el perfil de usuario
-app.get('/perfil.html', async (req, res) => {
+app.get('/perfil', async (req, res) => {
   // Verificar si el usuario está autenticado
   if (!req.session.userId) {
     return res.redirect('/login.html');
@@ -64,7 +88,9 @@ app.get('/perfil.html', async (req, res) => {
 
   try {
     // Obtener información del usuario por su ID
-    const usuario = await obtenerInformacionDelUsuario(req.session.userId);
+    const connection = await createDBConnection();
+    const usuario = await obtenerInformacionDelUsuario(connection, req.session.userId);
+    connection.end();
 
     if (usuario) {
       // Renderizar la plantilla EJS "perfil.ejs" y pasar los datos del usuario
@@ -90,7 +116,7 @@ app.listen(port, () => {
 });
 
 // Función para obtener información del usuario desde la base de datos
-async function obtenerInformacionDelUsuario(userId) {
+async function obtenerInformacionDelUsuario(connection, userId) {
   try {
     // Obtener información del usuario por su ID
     const [userData] = await connection.execute('SELECT * FROM usuarios WHERE id = ?', [userId]);

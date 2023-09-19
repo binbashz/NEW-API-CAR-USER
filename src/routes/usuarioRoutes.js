@@ -24,10 +24,16 @@ router.post('/inicio-sesion', iniciarSesion);
 // Ruta para cerrar sesión
 router.get('/cerrar-sesion', cerrarSesion);
 
-// Rutas para perfiles de usuario, solo accesibles si el usuario está autenticado
+/* Rutas para perfiles de usuario, solo accesibles si el usuario está autenticado
 router.get('/perfil.html', verificarSesion, (req, res) => {
     // Aquí manejas la lógica para mostrar la página de perfil enviando un archivo HTML
     res.sendFile(__dirname + '/public/html/perfil.html'); // Ejemplo de envío de archivo HTML
+}); */
+
+// Rutas para perfiles de usuario, solo accesibles si el usuario está autenticado
+router.get('/perfil', verificarSesion, (req, res) => {
+    // Asegúrate de proporcionar la variable 'user' al renderizar la plantilla 'perfil.ejs'
+    res.render('perfil', { user: req.user }); // 'req.user' debe contener la información del usuario autenticado
 });
 
 module.exports = router;
