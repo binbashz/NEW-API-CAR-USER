@@ -1,142 +1,85 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-const session = require('express-session'); // Importa express-session
+const session = require('express-session');
 const usuarioRoutes = require('./src/routes/usuarioRoutes');
-const autoRoutes = require('./src/routes/autoRoutes');
-const mysql = require('mysql2/promise'); // Importa el módulo MySQL2
-const bcrypt = require('bcrypt'); // Importa bcrypt para el hashing de contraseñas
-
+const usuarioControllers = require('./usuarioControllers');
+const mysql = require('mysql2/promise');
+const bcrypt = require('bcrypt');
+const path = require('path');
 const app = express();
 const port = process.env.PORT || 3000;
 
+// Configuración de la base de datos
+const dbConfig = {
+  host: 'localhost',
+  user: 'root',
+  database: 'rendatabase',
+  password: ''
+};
+
+// Crear una conexión a la base de datos
+const connection = await mysql.createConnection(dbConfig);
+
+// Configura el motor de vistas EJS y la carpeta de vistas
+app.set('view engine', 'ejs');
+app.set('views', path.join(__dirname, 'views'));
+
+// Configura el middleware body-parser
+app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
+
 app.use('/usuarios', usuarioRoutes);
 app.use('/autos', autoRoutes);
-app.use(express.static(__dirname + '/public')); // para servir los archivos estáticos(como imagenes)
+app.use(express.static(__dirname + '/public'));
 
-// Configura la sesión de Express
-app.use(session({
-  secret: 'tu_secreto_secreto', // Cambia esto a una cadena secreta más segura
-  resave: false,
-  saveUninitialized: true
-}));
+app.use(
+  session({
+    secret: 'tu_secreto_secreto',
+    resave: false,
+    saveUninitialized: true
+  })
+);
+
+// Rutas
+app.post('/registro', usuarioControllers.registrarUsuario);
+app.post('/inicio-sesion', usuarioControllers.iniciarSesion);
+app.get('/cerrar-sesion', usuarioControllers.cerrarSesion);
 
 // Rutas inicio
 app.get('/', (req, res) => {
-  res.sendFile(__dirname + '/public/html/index.html'); 
+  res.sendFile(__dirname + '/public/html/index.html');
 });
 
 // Ruta registro
-app.get('/registro.html', (req, res) => {  // muestra la pagina html registro
+app.get('/registro.html', (req, res) => {
   res.sendFile(__dirname + '/public/html/registro.html');
 });
 
-// Ruta para registrar un nuevo usuario
-app.post('/registro', async (req, res) => { // procesamiento de los datos enviados a través del formulario de registro
-  const { nombre, email, contrasena } = req.body;
+// Ruta para mostrar el perfil de usuario
+app.get('/perfil.html', async (req, res) => {
+  // Verificar si el usuario está autenticado
+  if (!req.session.userId) {
+    return res.redirect('/login.html');
+  }
 
   try {
-    // Conectarse a la base de datos
-    const connection = await mysql.createConnection({
-      host: 'localhost',
-      user: 'root',
-      database: 'rendatabase',
-      password: ''
-    });
+    // Obtener información del usuario por su ID
+    const usuario = await obtenerInformacionDelUsuario(req.session.userId);
 
-    // Verificar si el usuario ya existe en la base de datos
-    const [existingUser] = await connection.execute('SELECT * FROM usuarios WHERE email = ?', [email]);
-
-    if (existingUser.length > 0) {
-      // El usuario ya existe
-      return res.status(400).json({ mensaje: 'El usuario ya existe' });
+    if (usuario) {
+      // Renderizar la plantilla EJS "perfil.ejs" y pasar los datos del usuario
+      res.render('perfil', { usuario });
+    } else {
+      res.status(404).send('Usuario no encontrado');
     }
-
-    // Hash de la contraseña antes de almacenarla en la base de datos
-    const hashedPassword = await bcrypt.hash(contrasena, 10);
-
-    // Insertar el nuevo usuario en la base de datos
-    await connection.execute('INSERT INTO usuarios (nombre, email, contrasena) VALUES (?, ?, ?)', [
-      nombre,
-      email,
-      hashedPassword
-    ]);
-
-    // Cerrar la conexión a la base de datos
-    await connection.end();
-
-    // Responder con un mensaje de éxito
-    return res.status(201).json({ mensaje: 'Usuario registrado con éxito' });
   } catch (error) {
-    console.error('Error al registrar el usuario:', error);
+    console.error('Error al obtener información del usuario:', error);
     return res.status(500).json({ mensaje: 'Error interno del servidor' });
   }
 });
 
-// Ruta para mostrar el formulario de inicio de sesión
-app.get('/login.html', (req, res) => {
-  res.sendFile(__dirname + '/public/html/login.html');
-});
-
-// Ruta para acceder a el perfil de usuario
-app.get('/perfil.html', (req, res) => {
-  res.sendFile(__dirname + '/public/html/perfil.html');
-});
-
-// Ruta para procesar el inicio de sesión
-app.post('/inicio-sesion', async (req, res) => {
-  const { email, contrasena } = req.body;
-
-  try {
-    // Conectarse a la base de datos
-    const connection = await mysql.createConnection({
-      host: 'localhost',
-      user: 'root',
-      database: 'rendatabase',
-      password: ''
-    });
-
-    // Buscar el usuario en la base de datos por su correo electrónico
-    const [user] = await connection.execute('SELECT * FROM usuarios WHERE email = ?', [email]);
-
-    if (user.length === 0) {
-      // El usuario no existe
-      return res.status(401).json({ mensaje: 'Credenciales inválidas' });
-    }
-
-    // Verificar la contraseña utilizando bcrypt
-    const passwordMatch = await bcrypt.compare(contrasena, user[0].contrasena);
-
-    if (!passwordMatch) {
-      // La contraseña es incorrecta
-      return res.status(401).json({ mensaje: 'Credenciales inválidas' });
-    }
-
-    // Almacenar información del usuario en la sesión
-    req.session.userId = user[0].id;
-    req.session.userEmail = user[0].email;
-
-    // Inicio de sesión exitoso
-    return res.status(200).json({ mensaje: 'Inicio de sesión exitoso' });
-  } catch (error) {
-    console.error('Error en el inicio de sesión:', error);
-    return res.status(500).json({ mensaje: 'Error interno del servidor' });
-  }
-});
-
-// Ruta para cerrar sesión
-app.get('/cerrar-sesion', (req, res) => {
-  req.session.destroy((err) => {
-    if (err) {
-      console.error('Error al cerrar la sesión:', err);
-    }
-    res.redirect('/');
-  });
-});
-
-
-// Ruta para el estilo de pagina 
-app.use('/public/css', express.static(__dirname + '/public/css', { 
+// Ruta para el estilo de página
+app.use('/public/css', express.static(__dirname + '/public/css', {
   setHeaders: (res, path, stat) => {
     res.set('Content-Type', 'text/css');
   },
@@ -145,3 +88,23 @@ app.use('/public/css', express.static(__dirname + '/public/css', {
 app.listen(port, () => {
   console.log(`Servidor en funcionamiento en el puerto ${port}`);
 });
+
+// Función para obtener información del usuario desde la base de datos
+async function obtenerInformacionDelUsuario(userId) {
+  try {
+    // Obtener información del usuario por su ID
+    const [userData] = await connection.execute('SELECT * FROM usuarios WHERE id = ?', [userId]);
+
+    if (userData.length === 0) {
+      // El usuario no existe
+      return null;
+    }
+
+    const usuario = userData[0];
+
+    return usuario;
+  } catch (error) {
+    console.error('Error al obtener información del usuario:', error);
+    throw error;
+  }
+}

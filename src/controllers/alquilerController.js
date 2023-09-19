@@ -7,9 +7,9 @@ exports.alquilarAuto = async (req, res) => {
     try {
       //  calcular el costo del alquiler en función de la tarifa diaria y la duración en días
      
-// Después de calcular el costo, almacenar los detalles del alquiler en tu base de datos si es necesario.
+     // Después de calcular el costo, almacenar los detalles del alquiler an la base de datos si es necesario.
   
-// Responder con un mensaje de éxito y el costo total
+    // Responder con un mensaje de éxito y el costo total
       res.status(200).json({ mensaje: 'Alquiler exitoso', costoTotal: costoCalculado });
     } catch (error) {
       console.error(error);
