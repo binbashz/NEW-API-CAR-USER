@@ -6,7 +6,7 @@ const usuarioControllers = require('./src/controllers/usuarioController');
 const autoRoutes = require('./src/routes/autoRoutes');
 
 const mysql = require('mysql2/promise');  // Asegúrate de tener instalada la dependencia mysql2
-const bcrypt = require('bcrypt');
+const bcrypt = require('bcrypt'); // requiere modulo de encriptacion******************* 
 const path = require('path');
 const app = express();
 const port = process.env.PORT || 3000;
@@ -70,6 +70,7 @@ app.get('/registro.html', (req, res) => {
 app.get('/perfil', (req, res) => {
   res.render('perfil'); // Renderiza el archivo perfil.ejs desde la carpeta 'views'
 }); */
+
 // Ruta para el perfil
 app.get('/perfil', (req, res) => {
   // Asegúrate de tener la variable 'user' definida o reemplaza con tu lógica de autenticación
